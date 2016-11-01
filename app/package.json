@@ -1,14 +1,14 @@
 {
-  "name": "Timesheets",
-  "version": "1.4.1",
-  "description": "A timesheet keeping app based on electron",
+  "name": "Trippy",
+  "version": "0.0.1",
+  "description": "A place to list, search and run your games from different vendors.",
   "main": "main/index.js",
-  "author": "Burkhard Reffeling",
+  "author": "Vincent Lark",
   "license": "MIT",
-  "homepage": "https://github.com/hardchor/timesheets#readme",
+  "homepage": "https://github.com/vincent/trippy#readme",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hardchor/timesheets.git"
+    "url": "git+ssh://git@github.com/vincent/trippy.git"
   },
   "devDependencies": {
     "source-map-support": "^0.4.0"

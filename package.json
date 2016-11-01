@@ -30,16 +30,16 @@
     "type": "git",
     "url": "git+ssh://git@github.com/vincent/trippy.git"
   },
-  "author": "Burkhard Reffeling",
+  "author": "Vincent Lark",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vincent/trippy/issues"
   },
   "keywords": [
-    "timesheet",
-    "time",
-    "tracking",
-    "electron"
+    "electron",
+    "games",
+    "launcher",
+    "steam"
   ],
   "homepage": "https://github.com/vincent/trippy#readme",
   "dependencies": {
@@ -104,7 +104,7 @@
     "npm": "2.x || 3.x"
   },
   "contributors": [
-    "Jack Wilkinson (https://github.com/guacjack)"
+    "Vincent Lark (https://github.com/vincent)"
   ],
   "build": {
     "appId": "vlark.trippy",
