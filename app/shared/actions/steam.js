@@ -1,5 +1,5 @@
 import steamAuth from '../../main/api/requestSteamToken';
-import listGames from '../../main/api/listGames';
+import listSteamGames from '../../main/api/listSteamGames';
 import { createAliasedAction } from 'electron-redux';
 import storage from 'electron-json-storage';
 import {shell} from 'electron';
@@ -57,7 +57,7 @@ export const getSteamGames = createAliasedAction(
     return function (dispatch, getState) {
       dispatch({
         type: UPDATE_STEAM_GAMES,
-        payload: listGames(getState().steam.steam_id)
+        payload: listSteamGames(getState().steam.steam_id)
       })
     }
   }
