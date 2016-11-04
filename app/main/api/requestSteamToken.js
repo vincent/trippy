@@ -1,4 +1,3 @@
-import config from '../../config';
 import { status, json } from '../../shared/helpers/fetch';
 import steamAuth from 'electron-steam-openid';
 

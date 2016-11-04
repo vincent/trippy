@@ -4,13 +4,9 @@ import {
   RESTORE_STEAM_ACCOUNT,
   AUTHENTICATE_STEAM,
   UPDATE_STEAM_GAMES,
+  UPDATE_STEAM_GAME_DETAILS,
   LAUNCH_STEAM_GAME
 } from '../actions/steam';
-
-import {
-  UPDATE_GAMES,
-  LAUNCH_GAME
-} from '../actions/system';
 
 const initialState = {
   steam_id: 0,
@@ -25,7 +21,6 @@ export default function steam(state = initialState, action) {
   }
 
   switch (type) {
-    case LAUNCH_GAME:
     case LAUNCH_STEAM_GAME:
       return {
         ...state,
@@ -54,7 +49,6 @@ export default function steam(state = initialState, action) {
         steam_id: payload.steam_id,
       };
 
-    case UPDATE_GAMES:
     case UPDATE_STEAM_GAMES: {
       if (error) return state;
       const games = payload.response.games.map(game => {
@@ -68,12 +62,26 @@ export default function steam(state = initialState, action) {
           ...game,
         };
       });
-
       return {
         ...state,
-        games,
+        games
       };
     }
+
+    case UPDATE_STEAM_GAME_DETAILS:
+      const games = state.games.map(function (game) {
+        if (game.id === payload.gameId) {
+          return {
+            ...game,
+            achievements: payload.achievements
+          };
+        }
+        return game;
+      })
+      return {
+        ...state,
+        games
+      };
 
     default:
       return state;

@@ -5,12 +5,12 @@ import GameList from './GameList';
 class Games extends Component {
   static propTypes = {
     games: PropTypes.arrayOf(PropTypes.object),
-    updateGames: PropTypes.func.isRequired,
+    updateOwnedGames: PropTypes.func.isRequired,
     launchGame: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
-    this.props.updateGames();
+    this.props.updateOwnedGames();
   }
 
   render() {

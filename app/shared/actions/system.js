@@ -5,11 +5,6 @@ export const UPDATE_DOWNLOADED = 'UPDATE_DOWNLOADED';
 export const UPDATE_ERROR = 'UPDATE_ERROR';
 export const UPDATE_NOT_AVAILABLE = 'UPDATE_NOT_AVAILABLE';
 export const SHOW_MENUBAR_WINDOW = 'SHOW_MENUBAR_WINDOW';
-export const RESTORE_ACCOUNTS = 'RESTORE_ACCOUNTS';
-export const UPDATE_OWNED_GAMES = 'UPDATE_OWNED_GAMES';
-export const LAUNCH_GAME = 'LAUNCH_GAME';
-
-import { api as steamApi } from './steam';
 
 export function appStartup() {
   return {
@@ -59,23 +54,5 @@ export function showMenubarWindow(path = '/') {
   return {
     type: SHOW_MENUBAR_WINDOW,
     payload: path,
-  }
-}
-
-export const restoreAccounts = function () {
-  return function (dispatch) {
-    dispatch(steamApi.RESTORE_ACCOUNT());
-  }
-}
-
-export const launchGame = function (game) {
-  return function (dispatch) {
-    dispatch(steamApi.LAUNCH_GAME(game));
-  }
-}
-
-export const updateGames = function () {
-  return function (dispatch) {
-    dispatch(steamApi.UPDATE_OWNED_GAMES());
   }
 }

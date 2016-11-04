@@ -1,14 +1,15 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Games from '../components/Games';
+import GameView from '../components/Games/GameView';
 import * as SystemActions from '../../../shared/actions/system';
 import * as GamesActions from '../../../shared/actions/games';
-import gamesFilter from '../../../main/api/gameFilter';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   const ownedGames = [].concat(state.steam.games);
   return {
-    games: gamesFilter(ownedGames, state.games.gamesFilter)
+    game: ownedGames.find(function (g) {
+      return g.id == ownProps.params.gameId;
+    })
   };
 }
 
@@ -16,4 +17,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...GamesActions, ...SystemActions }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Games);
+export default connect(mapStateToProps, mapDispatchToProps)(GameView);

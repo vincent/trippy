@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { Link } from 'react-router';
 import { Grid, Cell, Card, CardTitle, CardText, CardMenu, CardActions, Button, IconButton } from 'react-mdl';
 import moment from 'moment';
 
@@ -10,9 +11,9 @@ function GameList({
     return (
       <Cell col={4} key={index}>
         <Card shadow={0} style={{width: '500px', height: '300px', margin: 'auto'}}>
-          <CardTitle style={{color: '#fff', height: '176px', background: `url(http://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/header.jpg) center / cover`}}>
-            {game.name}
-          </CardTitle>
+          <Link to={`/game/${game.id}`}>
+            <CardTitle style={{color: '#fff', height: '250px', background: `url(${game.cover_small}) center / cover`}}/>
+          </Link>
           <CardText>
             Played for {moment.duration(game.playtime_forever, 'minutes').humanize()}.
           </CardText>
