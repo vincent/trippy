@@ -8,6 +8,11 @@ import {
   SET_STEAM_ENABLED,
 } from '../actions/settings';
 
+/* eslint-disable no-param-reassign */
+import {
+  APP_STARTUP,
+ } from '../actions/system'
+
 const initialState = {
   remindersEnabled: true,
   remindersFromTime: '09:00',
@@ -27,6 +32,12 @@ const initialState = {
 
 export default function settings(state = initialState, action) {
   switch (action.type) {
+    case APP_STARTUP:
+      return {
+        ...state,
+        userSettingsPath: action.payload.userSettingsPath
+      };
+
     case SET_REMINDERS_ENABLED: {
       return {
         ...state,

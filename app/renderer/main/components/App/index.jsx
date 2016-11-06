@@ -7,6 +7,7 @@ import Background from '../Background';
 
 class App extends Component {
   static propTypes = {
+    appStartup: PropTypes.func.isRequired,
     updateGamesFilter: PropTypes.func.isRequired,
     updateOwnedGames: PropTypes.func.isRequired,
     restoreAccounts: PropTypes.func.isRequired,
@@ -16,11 +17,11 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // this.props.restoreAccounts();
+    this.props.appStartup();
+    this.props.restoreAccounts();
   }
 
   render() {
-    this.props.restoreAccounts();
     return (
       <Layout fixedDrawer fixedHeader>
         <Header updateGamesFilter={this.props.updateGamesFilter}  />

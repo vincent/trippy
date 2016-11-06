@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {
+  APP_STARTUP,
   CHECKING_FOR_UPDATE,
   UPDATE_AVAILABLE,
   UPDATE_DOWNLOADED,

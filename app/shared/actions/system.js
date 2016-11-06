@@ -6,9 +6,14 @@ export const UPDATE_ERROR = 'UPDATE_ERROR';
 export const UPDATE_NOT_AVAILABLE = 'UPDATE_NOT_AVAILABLE';
 export const SHOW_MENUBAR_WINDOW = 'SHOW_MENUBAR_WINDOW';
 
+import userSettings from '../store/settings';
+
 export function appStartup() {
   return {
     type: APP_STARTUP,
+    payload: {
+      userSettingsPath: userSettings.getSettingsFilePath()
+    }
   };
 }
 

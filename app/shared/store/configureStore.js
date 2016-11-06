@@ -5,7 +5,6 @@ import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-import { enableBatching } from 'redux-batched-actions';
 import {
   forwardToMain,
   forwardToRenderer,

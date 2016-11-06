@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {
+  UPDATE_STEAM_API_KEY,
   CANCEL_STEAM_ACCOUNT,
   RESTORE_STEAM_ACCOUNT,
   AUTHENTICATE_STEAM,
@@ -21,6 +22,12 @@ export default function steam(state = initialState, action) {
   }
 
   switch (type) {
+    case UPDATE_STEAM_API_KEY:
+      return {
+        ...state,
+        api_key: payload.api_key
+      };
+
     case LAUNCH_STEAM_GAME:
       return {
         ...state,
@@ -34,13 +41,25 @@ export default function steam(state = initialState, action) {
         steam_id: undefined
       };
 
-    case AUTHENTICATE_STEAM:
     case RESTORE_STEAM_ACCOUNT:
       if (error) {
         return {
           ...state,
-          error: true,
-          steam_id: undefined
+          error: true
+        };
+      }
+      return {
+        ...state,
+        error: false,
+        api_key: payload.api_key,
+        steam_id: payload.steam_id,
+      };
+
+    case AUTHENTICATE_STEAM:
+      if (error) {
+        return {
+          ...state,
+          error: true
         };
       }
       return {

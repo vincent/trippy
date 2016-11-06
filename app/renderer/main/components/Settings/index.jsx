@@ -29,6 +29,12 @@ function Settings({
     <Grid>
       <Cell col={12}>
         <h1>Settings</h1>
+        <Grid>
+          <Cell col={12}>
+            User data will be written in {settings.userSettingsPath}
+          </Cell>
+        </Grid
+        </div>
         <SettingsForm settings={settings} onSubmit={handleSubmit} initialValues={settings} />
       </Cell>
     </Grid>

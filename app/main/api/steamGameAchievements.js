@@ -2,9 +2,7 @@ import { fetchCached, status, json } from '../../shared/helpers/fetch';
 import fetch from 'node-fetch';
 import config from '../../config';
 
-const apiKey = process.env.STEAM_API_KEY;
-
-export function steamGameAllAchievements(appId) {
+export function steamGameAllAchievements(apiKey, appId) {
   return fetch(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=${apiKey}&appId=${appId}&format=json`, {
     method: 'GET'
   })
@@ -12,7 +10,7 @@ export function steamGameAllAchievements(appId) {
   .then(json)
 }
 
-export function steamGameUserAchievements(steamId, appId) {
+export function steamGameUserAchievements(apiKey, steamId, appId) {
   return fetch(`http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?key=${apiKey}&appId=${appId}&steamid=${steamId}&format=json`, {
     method: 'GET'
   })
@@ -20,16 +18,16 @@ export function steamGameUserAchievements(steamId, appId) {
   .then(json);
 }
 
-export default function steamGameAchievements(steamId, appId) {
+export default function steamGameAchievements(apiKey, steamId, appId) {
   let owned;
   let payload = {
     achievements: [],
     gameId: appId
   }
-  return steamGameAllAchievements(appId)
+  return steamGameAllAchievements(apiKey, appId)
     .then(function (sgaResponse) {
       payload.achievements = sgaResponse.game.availableGameStats.achievements;
-      return steamGameUserAchievements(steamId, appId)
+      return steamGameUserAchievements(apiKey, steamId, appId)
     })
     .then(function (sguResponse) {
       return owned = sguResponse.playerstats.achievements;
