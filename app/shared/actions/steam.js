@@ -65,13 +65,11 @@ export const authenticateSteam = createAliasedAction(
 
 export const getSteamGames = createAliasedAction(
   `${UPDATE_STEAM_OWNED_GAMES}_MAIN`,
-  function () {
-    return function (dispatch, getState) {
-      dispatch({
-        type: UPDATE_STEAM_OWNED_GAMES,
-        payload: steamListOwnedGames(getState().steam.steam_id)
-      })
-    }
+  () => function (dispatch, getState) {
+    dispatch({
+      type: UPDATE_STEAM_OWNED_GAMES,
+      payload: steamListOwnedGames(getState().steam.steam_id)
+    })
   }
 );
 
