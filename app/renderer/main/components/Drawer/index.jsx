@@ -41,12 +41,11 @@ function Drawer({ job, settings }) {
 
         <Spacer />
 
-        {settings.steamEnabled &&
-          <Link to="/steam" className={styles.navigationLink} activeClassName={styles.active}>
-            <FaIcon name="steam" className={navigationLinkIconClassName} />
-            Steam
-          </Link>
-        }
+        <Link to="/steam" className={styles.navigationLink} activeClassName={styles.active}>
+          <FaIcon name="steam" className={navigationLinkIconClassName} />
+          Steam
+        </Link>
+
         <Link to="/settings" className={styles.navigationLink} activeClassName={styles.active}>
           <Icon name="settings" className={navigationLinkIconClassName} />
           Settings

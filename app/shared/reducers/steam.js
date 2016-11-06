@@ -3,7 +3,7 @@ import {
   CANCEL_STEAM_ACCOUNT,
   RESTORE_STEAM_ACCOUNT,
   AUTHENTICATE_STEAM,
-  UPDATE_STEAM_GAMES,
+  UPDATE_STEAM_OWNED_GAMES,
   UPDATE_STEAM_GAME_DETAILS,
   LAUNCH_STEAM_GAME
 } from '../actions/steam';
@@ -49,7 +49,7 @@ export default function steam(state = initialState, action) {
         steam_id: payload.steam_id,
       };
 
-    case UPDATE_STEAM_GAMES: {
+    case UPDATE_STEAM_OWNED_GAMES: {
       if (error) return state;
       const games = payload.response.games.map(game => {
         const found = state.games.reduce(

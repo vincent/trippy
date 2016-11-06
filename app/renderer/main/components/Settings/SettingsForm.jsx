@@ -58,20 +58,6 @@ function SettingsForm({ handleSubmit, settings }) {
               </Cell>
             </Grid>
           }
-          {/*
-          <Field
-            name="pomodoroEnabled"
-            type="checkbox"
-            label="Pomodoro timer"
-            component={TOGGLE}
-          />
-          */}
-          <Field
-            name="steamEnabled"
-            type="checkbox"
-            label="Steam integration"
-            component={TOGGLE}
-          />
         </Cell>
       </Grid>
     </form>

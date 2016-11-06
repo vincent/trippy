@@ -5,10 +5,17 @@ import * as SystemActions from '../../../shared/actions/system';
 import * as GamesActions from '../../../shared/actions/games';
 import gamesFilter from '../../../main/api/gameFilter';
 
+function providers () {
+  return Object.keys(GamesActions.providers);
+}
+
+function ownedGames (state) {
+  return [].concat.apply([], providers().map(pName => state[pName].games));
+}
+
 function mapStateToProps(state) {
-  const ownedGames = [].concat(state.steam.games);
   return {
-    games: gamesFilter(ownedGames, state.games.gamesFilter)
+    games: gamesFilter(ownedGames(state), state.games.gamesFilter)
   };
 }
 

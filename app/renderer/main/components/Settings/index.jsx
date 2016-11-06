@@ -9,10 +9,6 @@ function Settings({
   setRemindersFromTime,
   setRemindersToTime,
   setRemindersWeekdays,
-  // pomodoro
-  setPomodoroEnabled,
-  // github
-  setSteamEnabled,
 }) {
   /* eslint-disable react/prop-types */
   function handleSubmit({
@@ -21,20 +17,12 @@ function Settings({
     remindersFromTime,
     remindersToTime,
     remindersWeekdays,
-    // pomodoro
-    pomodoroEnabled,
-    // github
-    steamEnabled,
   }) {
     // reminders
     setRemindersEnabled(remindersEnabled);
     setRemindersFromTime(remindersFromTime);
     setRemindersToTime(remindersToTime);
     setRemindersWeekdays(remindersWeekdays);
-    // pomodoro
-    setPomodoroEnabled(pomodoroEnabled);
-    // github
-    setSteamEnabled(steamEnabled);
   }
 
   return (
@@ -54,10 +42,6 @@ Settings.propTypes = {
   setRemindersFromTime: PropTypes.func.isRequired,
   setRemindersToTime: PropTypes.func.isRequired,
   setRemindersWeekdays: PropTypes.func.isRequired,
-  // pomodor
-  setPomodoroEnabled: PropTypes.func.isRequired,
-  // steam
-  setSteamEnabled: PropTypes.func.isRequired,
 };
 
 export default Settings;
