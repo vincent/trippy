@@ -78,6 +78,7 @@
     "jsdom": "^9.4.2",
     "json-loader": "^0.5.4",
     "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
     "mocha": "^3.0.2",
     "node-libs-browser": "^1.0.0",
     "open": "0.0.5",

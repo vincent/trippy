@@ -3,6 +3,8 @@ import { app, ipcMain, dialog } from 'electron';
 import pify from 'pify';
 import createMainWindow from './createMainWindow';
 import createMenuBarWindow from './createMenuBarWindow';
+import fileCacheHandler from './fileCacheHandler';
+
 import configureStore from '../shared/store/configureStore';
 import tray from './tray';
 import tasks from './tasks';
@@ -10,6 +12,8 @@ import tasks from './tasks';
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')(); // eslint-disable-line global-require
 }
+
+fileCacheHandler();
 
 async function start() {
   // set-up menu bar

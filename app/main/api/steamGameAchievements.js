@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import config from '../../config';
 
 export function steamGameAllAchievements(apiKey, appId) {
-  return fetch(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=${apiKey}&appId=${appId}&format=json`, {
+  return fetchCached(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=${apiKey}&appId=${appId}&format=json`, {
     method: 'GET'
   })
   .then(status)
@@ -11,7 +11,7 @@ export function steamGameAllAchievements(apiKey, appId) {
 }
 
 export function steamGameUserAchievements(apiKey, steamId, appId) {
-  return fetch(`http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?key=${apiKey}&appId=${appId}&steamid=${steamId}&format=json`, {
+  return fetchCached(`http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?key=${apiKey}&appId=${appId}&steamid=${steamId}&format=json`, {
     method: 'GET'
   })
   .then(status)

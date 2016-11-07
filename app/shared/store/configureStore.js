@@ -33,7 +33,7 @@ export default function configureStore(initialState, scope = 'main') {
   ];
 
   if (!process.env.NODE_ENV) {
-    // middleware.push(logger);
+    middleware.push(logger);
   }
 
   if (scope === 'renderer') {

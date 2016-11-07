@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Grid, Cell, Card, CardTitle, CardText, CardMenu, CardActions, Button, IconButton, Tooltip } from 'react-mdl';
+import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import AchievementList from './AchievementList'
 import moment from 'moment';
 
@@ -16,7 +17,7 @@ var GameView = React.createClass({
       <div>
         <Grid>
           <Card shadow={0} style={{width: '100%', height: '400px', margin: 'auto'}}>
-            <CardTitle style={{color: '#fff', height: '300px', background: `url(${game.cover_small}) center / cover`}}>
+            <CardTitle style={{color: '#fff', height: '300px', background: `url(${cachedUrl(game.cover_small)}) center / cover`}}>
               {game.name}
             </CardTitle>
             <CardText>

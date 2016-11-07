@@ -1,3 +1,4 @@
+import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import React, { PropTypes, Component } from 'react';
 import { Grid, Tooltip } from 'react-mdl';
 
@@ -10,7 +11,7 @@ function AchievementList({
       const tip = achievement.displayName + '\n' + achievement.description;
       return (
         <Tooltip key={index} label={tip} large>
-          <img src={img} width={64} height={64} />
+          <img src={cachedUrl(img)} width={64} height={64} />
         </Tooltip>
       );
     });
