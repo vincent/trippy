@@ -2,7 +2,6 @@ import steamAuth from '../../main/api/requestSteamToken';
 import steamListOwnedGames from '../../main/api/steamListOwnedGames';
 import steamGameAchievements from '../../main/api/steamGameAchievements';
 import { createAliasedAction } from 'electron-redux';
-import jsonStorage from 'electron-json-storage';
 import settings from '../store/settings';
 import {shell} from 'electron';
 
