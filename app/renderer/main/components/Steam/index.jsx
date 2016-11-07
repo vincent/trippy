@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React, { PropTypes } from 'react';
 import { Grid, Cell, Button } from 'react-mdl';
-import config from '../../../../config';
 import SteamAuth from './SteamAuth';
 import SteamApiKey from './SteamApiKey';
 

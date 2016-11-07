@@ -1,6 +1,5 @@
 import { fetchCached, status, json } from '../../shared/helpers/fetch';
 import fetch from 'node-fetch';
-import config from '../../config';
 
 export function steamGameAllAchievements(apiKey, appId) {
   return fetchCached(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=${apiKey}&appId=${appId}&format=json`, {
