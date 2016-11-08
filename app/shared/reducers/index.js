@@ -6,6 +6,7 @@ import job from './job';
 import games from './games';
 import steam from './steam';
 import settings from './settings';
+import wallpaper from './wallpaper';
 
 export default function getRootReducer(scope = 'main') {
   let reducers = {
@@ -14,6 +15,7 @@ export default function getRootReducer(scope = 'main') {
     settings,
     games,
     steam,
+    wallpaper,
   };
 
   if (scope === 'renderer') {

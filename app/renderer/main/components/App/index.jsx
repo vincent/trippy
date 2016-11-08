@@ -3,7 +3,7 @@ import { Layout, Content } from 'react-mdl';
 import AutoUpdater from '../AutoUpdater';
 import Header from '../Header';
 import Drawer from '../Drawer';
-import Background from '../Background';
+import Wallpaper from '../Wallpaper';
 
 class App extends Component {
   static propTypes = {
@@ -14,10 +14,13 @@ class App extends Component {
     children: PropTypes.element.isRequired,
     system: PropTypes.object.isRequired,
     job: PropTypes.object.isRequired,
+    wallpaper: PropTypes.object.isRequired,
+    initWallpaper: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
     this.props.appStartup();
+    this.props.initWallpaper();
     this.props.restoreAccounts();
   }
 
@@ -25,7 +28,7 @@ class App extends Component {
     return (
       <Layout fixedDrawer fixedHeader>
         <Header updateGamesFilter={this.props.updateGamesFilter}  />
-        <Background />
+        <Wallpaper wallpaper={this.props.wallpaper} />
         <Drawer job={this.props.job} settings={this.props.settings} />
         <Content component="main">
           <AutoUpdater system={this.props.system} />

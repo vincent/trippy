@@ -16,29 +16,32 @@ var styles = {
 
 var now, start = Date.now();
 
-var Background = React.createClass({
+var FssWallpaper = React.createClass({
 
   componentDidMount: function () {
     const self = this;
 
-    function resize () {
-      self.animation && self.animation.renderer.element.parentElement.removeChild(
-        self.animation.renderer.element
-      );
-      // self.animation.renderer.gl.finish();
+    setTimeout(function () {
+      function resize () {
+        self.animation && self.animation.renderer.element.parentElement.removeChild(
+          self.animation.renderer.element
+        );
+        // self.animation.renderer.gl.finish();
 
-      self.animation = getAnimation();
+        self.animation = getAnimation();
 
-      self.animation.renderer.setSize(
-        self.animation.renderer.element.parentElement.clientWidth,
-        self.animation.renderer.element.parentElement.clientHeight
-      );
+        self.animation.renderer.setSize(
+          self.animation.renderer.element.parentElement.clientWidth,
+          self.animation.renderer.element.parentElement.clientHeight
+        );
 
-      self.animate();
-    }
+        self.animate();
+      }
 
-    remote.getCurrentWindow().on('show', resize);
-    remote.getCurrentWindow().on('resize', resize);
+      remote.getCurrentWindow().on('show', resize);
+      remote.getCurrentWindow().on('resize', resize);
+      resize();
+    }, 100);
   },
 
   animate: function () {
@@ -50,12 +53,12 @@ var Background = React.createClass({
 
   render: function () {
     return (
-      <div className="background" style={styles.container}></div>
+      <div className="fss-wallpaper" style={styles.container}></div>
     );
   }
 })
 
-export default Background;
+export default FssWallpaper;
 
 
 
@@ -164,7 +167,7 @@ function getAnimation () {
   var renderer = new FSS.WebGLRenderer();
 
   // 2) Add the Renderer's element to the DOM:
-  var container = document.getElementsByClassName('background')[0];
+  var container = document.getElementsByClassName('fss-wallpaper')[0];
   container.appendChild(renderer.element);
   renderer.setSize(window.innerWidth, window.innerHeight);
 

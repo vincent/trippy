@@ -25,9 +25,7 @@ const initialState = {
     5: true,
     6: false,
     7: false,
-  },
-  pomodoroEnabled: false,
-  steamEnabled: true,
+  }
 };
 
 export default function settings(state = initialState, action) {

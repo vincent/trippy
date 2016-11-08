@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import SettingsForm from './SettingsForm';
+import WallpaperForm from '../Wallpaper/WallpaperForm';
 
 function Settings({
   // reminders
@@ -9,6 +10,9 @@ function Settings({
   setRemindersFromTime,
   setRemindersToTime,
   setRemindersWeekdays,
+  // wallpaper
+  wallpaper,
+  updateWallpaper
 }) {
   /* eslint-disable react/prop-types */
   function handleSubmit({
@@ -35,6 +39,7 @@ function Settings({
           </Cell>
         </Grid>
         <SettingsForm settings={settings} onSubmit={handleSubmit} initialValues={settings} />
+        <WallpaperForm wallpaper={wallpaper} onSubmit={updateWallpaper} initialValues={wallpaper} />
       </Cell>
     </Grid>
   );
@@ -47,6 +52,9 @@ Settings.propTypes = {
   setRemindersFromTime: PropTypes.func.isRequired,
   setRemindersToTime: PropTypes.func.isRequired,
   setRemindersWeekdays: PropTypes.func.isRequired,
+  // wallpaper
+  wallpaper: PropTypes.object.isRequired,
+  updateWallpaper: PropTypes.func.isRequired,
 };
 
 export default Settings;

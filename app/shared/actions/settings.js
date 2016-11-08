@@ -33,17 +33,3 @@ export function setRemindersWeekdays(days) {
     payload: days,
   };
 }
-
-export function setPomodoroEnabled(flag) {
-  return {
-    type: SET_POMODORO_ENABLED,
-    payload: flag,
-  };
-}
-
-export function setSteamEnabled(flag) {
-  return {
-    type: SET_STEAM_ENABLED,
-    payload: flag,
-  };
-}
