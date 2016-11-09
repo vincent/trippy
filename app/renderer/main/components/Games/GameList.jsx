@@ -1,48 +1,45 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component, Children } from 'react';
 import { Link } from 'react-router';
 import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import { Grid, Cell, Card, CardTitle, CardText, CardMenu, CardActions, Button, IconButton, Slider } from 'react-mdl';
+import GameCard from './GameCard';
 import moment from 'moment';
-
-function cardStyle (zoom) {
-  return {
-    width: `calc(${zoom}% - 16px)`,
-    overflow: 'hidden'
-  }
-}
 
 var GameList = React.createClass({
 
+  getInitialState: function() {
+    return {
+      zoom: this.props.gameListZoom
+    };
+  },
+
   handleZoomChange: function (event) {
-    this.props.setGameListZoom(event.target.value);
+    this.setState({
+      zoom: parseInt(event.target.value)
+    });
+  },
+
+  componentWillUnmount: function () {
+    this.props.setGameListZoom(this.state.zoom);
   },
 
   render: function () {
     const self = this;
-    const cards = this.props.games.map(function(game, index) {
+    const { games, gameListZoom, launchGame } = this.props;
+    const cards = games.map(function(game, index) {
       return (
-        <Cell col={4} key={index} style={cardStyle(self.props.gameListZoom)}>
-          <Card shadow={0} style={{width: '500px', height: '350px', margin: 'auto'}}>
-            <Link to={`/game/${game.id}`}>
-              <CardTitle expand style={{color: '#fff', height: '250px', background: `url(${cachedUrl(game.cover_small)}) center / cover`}}/>
-            </Link>
-            <CardText>
-              Played for {moment.duration(game.playtime_forever, 'minutes').humanize()}.
-            </CardText>
-            <CardActions border>
-              <Button ripple onClick={() => self.props.launchGame(game)}>Play</Button>
-            </CardActions>
-            <CardMenu style={{color: '#fff'}}>
-              <IconButton name="share" />
-            </CardMenu>
-          </Card>
-        </Cell>
-      )});
-
+        <GameCard
+          key={index}
+          game={game}
+          gameListZoom={self.state.zoom}
+          launchGame={() => self.props.launchGame(game)}
+        />
+      );
+    });
     return (
       <Grid>
         <Cell col={12}>
-          <Slider min={10} max={50} defaultValue={33.33333} value={this.props.gameListZoom} onChange={this.handleZoomChange}/>
+          <Slider min={10} max={50} value={self.state.zoom} onChange={this.handleZoomChange}/>
         </Cell>
         {cards}
       </Grid>
