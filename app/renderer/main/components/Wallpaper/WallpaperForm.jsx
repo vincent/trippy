@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Grid, Cell, RadioGroup, Radio } from 'react-mdl';
 import adapter, { TOGGLE, TIME, CHECKBOXES } from '../../../shared/forms/adapter';
-
+import { SolidWallpaperForm } from './SolidWallpaper';
+import { FssWallpaperForm } from './FssWallpaper';
 
 var WallpaperForm = React.createClass({
 
@@ -18,7 +19,7 @@ var WallpaperForm = React.createClass({
     setTimeout(function () {
       self.props.onSubmit({
         name: self.state.name,
-        settings: { color:'#efefef' }
+        settings: self.state.settings,
       });
     });
   },
@@ -31,9 +32,21 @@ var WallpaperForm = React.createClass({
             <span>Wallpaper preferences:</span>
           </Cell>
           <Cell col={12}>
-            <RadioGroup container="ul" childContainer="li" name="name" value="{this.state.name}">
-              <Radio value="solid" ripple>Solid</Radio>
-              <Radio value="fss" ripple>FSS</Radio>
+            <RadioGroup childContainer="div" name="name" value={this.state.name}>
+              <Radio value="solid" ripple>Solid
+                {this.state.name == 'solid'
+                  && <SolidWallpaperForm
+                        settings={this.props.wallpaper.settings}
+                        onChange={this.handleChange}
+                      />}
+              </Radio>
+              <Radio value="fss" ripple>FSS
+                {this.state.name == 'fss'
+                  && <FssWallpaperForm
+                        settings={this.props.wallpaper.settings}
+                        onChange={this.handleChange}
+                      />}
+              </Radio>
             </RadioGroup>
           </Cell>
         </Grid>

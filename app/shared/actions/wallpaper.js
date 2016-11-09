@@ -1,21 +1,25 @@
 export const INIT_WALLPAPER = 'INIT_WALLPAPER';
 export const UPDATE_WALLPAPER = 'UPDATE_WALLPAPER';
 
-import userSettings from '../store/settings';
+import settings from '../store/settings';
 
 export function initWallpaper(wallpaper) {
   return {
     type: INIT_WALLPAPER,
-    payload: {
-      name: 'solid',
-      settings: { color:'#fff' },
-    }
+    payload: settings.get('wallpaper'),
+    meta: {
+      scope: 'local',
+    },
   };
 }
 
 export function updateWallpaper(wallpaper) {
+  settings.set('wallpaper', wallpaper);
   return {
     type: UPDATE_WALLPAPER,
-    payload: wallpaper
+    payload: wallpaper,
+    meta: {
+      scope: 'local',
+    },
   };
 }

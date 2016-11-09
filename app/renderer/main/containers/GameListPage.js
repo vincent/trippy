@@ -5,17 +5,10 @@ import * as SystemActions from '../../../shared/actions/system';
 import * as GamesActions from '../../../shared/actions/games';
 import gamesFilter from '../../../main/api/gameFilter';
 
-function providers () {
-  return Object.keys(GamesActions.providers);
-}
-
-function ownedGames (state) {
-  return [].concat.apply([], providers().map(pName => state[pName].games));
-}
-
 function mapStateToProps(state) {
   return {
-    games: gamesFilter(ownedGames(state), state.games.gamesFilter)
+    games: gamesFilter(state.games.ownedGames, state.games.gamesFilter),
+    gameListZoom: state.games.gameListZoom
   };
 }
 

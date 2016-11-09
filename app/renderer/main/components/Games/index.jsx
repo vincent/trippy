@@ -4,9 +4,11 @@ import GameList from './GameList';
 
 class Games extends Component {
   static propTypes = {
-    games: PropTypes.arrayOf(PropTypes.object),
     updateOwnedGames: PropTypes.func.isRequired,
+    setGameListZoom: PropTypes.func.isRequired,
+    games: PropTypes.arrayOf(PropTypes.object),
     launchGame: PropTypes.func.isRequired,
+    gameListZoom: PropTypes.number,
   }
 
   componentDidMount() {
@@ -17,7 +19,12 @@ class Games extends Component {
     return (
       <Grid>
         <Cell col={12}>
-          <GameList games={this.props.games} launchGame={this.props.launchGame} />
+          <GameList
+            games={this.props.games}
+            launchGame={this.props.launchGame}
+            gameListZoom={this.props.gameListZoom}
+            setGameListZoom={this.props.setGameListZoom}
+          />
         </Cell>
       </Grid>
     );

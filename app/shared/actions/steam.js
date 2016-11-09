@@ -1,9 +1,18 @@
 import steamAuth from '../../main/api/requestSteamToken';
 import steamListOwnedGames from '../../main/api/steamListOwnedGames';
 import steamGameAchievements from '../../main/api/steamGameAchievements';
+import steamGameNews from '../../main/api/steamGameNews';
 import { createAliasedAction } from 'electron-redux';
 import settings from '../store/settings';
 import {shell} from 'electron';
+
+import {
+  UPDATE_GAME_DETAILS,
+  UPDATE_OWNED_GAMES,
+  UPDATE_GAME_NEWS,
+  RESTORE_ACCOUNT,
+  LAUNCH_GAME
+} from '../actions/games';
 
 export const UPDATE_STEAM_API_KEY = 'steam/UPDATE_STEAM_API_KEY';
 export const CANCEL_STEAM_ACCOUNT = 'steam/CANCEL_ACCOUNT';
@@ -12,16 +21,18 @@ export const AUTHENTICATE_STEAM = 'steam/AUTHENTICATE';
 export const UPDATE_STEAM_OWNED_GAMES = 'steam/UPDATE_OWNED_GAMES';
 export const LAUNCH_STEAM_GAME = 'steam/LAUNCH_GAME';
 export const UPDATE_STEAM_GAME_DETAILS = 'steam/UPDATE_GAME_DETAILS';
+export const UPDATE_STEAM_GAME_NEWS = 'steam/UPDATE_GAME_NEWS';
 
 
 require('./games').addProviderHandler('steam', function steamProviderHandler (source) {
   switch (source.type) {
     case UPDATE_STEAM_GAME_DETAILS: return updateSteamGameDetails(source.payload);
+    case UPDATE_STEAM_GAME_NEWS: return updateSteamGameNews(source.payload);
+    case LAUNCH_STEAM_GAME: return launchSteamGame(source.payload);
     case RESTORE_STEAM_ACCOUNT: return restoreSteamAccount();
     case CANCEL_STEAM_ACCOUNT: return cancelSteamAccount();
     case UPDATE_STEAM_OWNED_GAMES: return getSteamGames();
     case AUTHENTICATE_STEAM: return authenticateSteam();
-    case LAUNCH_STEAM_GAME: return launchSteamGame(source.payload);
   }
 });
 
@@ -67,7 +78,7 @@ export const getSteamGames = createAliasedAction(
   `${UPDATE_STEAM_OWNED_GAMES}_MAIN`,
   () => function (dispatch, getState) {
     dispatch({
-      type: UPDATE_STEAM_OWNED_GAMES,
+      type: UPDATE_OWNED_GAMES,
       payload: steamListOwnedGames(getState().steam.api_key, getState().steam.steam_id)
     })
   }
@@ -87,9 +98,20 @@ export const updateSteamGameDetails = createAliasedAction(
   `${UPDATE_STEAM_GAME_DETAILS}_MAIN`,
   (game) => function (dispatch, getState) {
     dispatch({
-      type: UPDATE_STEAM_GAME_DETAILS,
+      type: UPDATE_GAME_DETAILS,
       payload: steamGameAchievements(getState().steam.api_key, getState().steam.steam_id, game.appid)
     })
   }
 )
+
+export const updateSteamGameNews = createAliasedAction(
+  `${UPDATE_STEAM_GAME_NEWS}_MAIN`,
+  (game) => function (dispatch, getState) {
+    dispatch({
+      type: UPDATE_GAME_NEWS,
+      payload: steamGameNews(game.appid)
+    })
+  }
+)
+
 

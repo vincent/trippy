@@ -8,7 +8,7 @@ const initialState = {
   }
 };
 
-export default function games(state = initialState, action) {
+export default function wallpaper(state = initialState, action) {
   switch (action.type) {
 
     case INIT_WALLPAPER:

@@ -13,4 +13,5 @@ const fetchCached = fetchCachedModule({
   }
 })
 
-export default fetchCached;
+export default nodeFetch;
+// export default fetchCached;

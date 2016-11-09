@@ -1,7 +1,7 @@
-
-import React from 'react';
-
-const remote = require('electron').remote;
+import React, { PropTypes } from 'react';
+import { remote } from 'electron';
+import { GithubPicker } from 'react-color';
+import { Cell, Slider } from 'react-mdl';
 
 var styles = {
   container: {
@@ -18,8 +18,13 @@ var now, start = Date.now();
 
 var FssWallpaper = React.createClass({
 
+  componentWillUnmount: function () {
+    // body...
+  },
+
   componentDidMount: function () {
     const self = this;
+    const rootElement = this.rootElement;
 
     setTimeout(function () {
       function resize () {
@@ -28,7 +33,7 @@ var FssWallpaper = React.createClass({
         );
         // self.animation.renderer.gl.finish();
 
-        self.animation = getAnimation();
+        self.animation = getAnimation(rootElement, self.props.settings);
 
         self.animation.renderer.setSize(
           self.animation.renderer.element.parentElement.clientWidth,
@@ -45,7 +50,12 @@ var FssWallpaper = React.createClass({
   },
 
   animate: function () {
+    const settings = this.props.settings;
     now = Date.now() - start;
+    this.animation.scene.lights.forEach(function (light) {
+      light.ambient.set(settings.color, 1);
+    });
+    MESH.speed = settings.speed === undefined ? 0.0008 : settings.speed;
     this.animation.update();
     this.animation.renderer.render(this.animation.scene);
     requestAnimationFrame(this.animate);
@@ -53,16 +63,53 @@ var FssWallpaper = React.createClass({
 
   render: function () {
     return (
-      <div className="fss-wallpaper" style={styles.container}></div>
+      <div className="fss-wallpaper" style={styles.container} ref={(el) => this.rootElement = el}></div>
     );
   }
 })
+
+FssWallpaper.propTypes = {
+  settings: PropTypes.object.isRequired,
+};
 
 export default FssWallpaper;
 
 
 
-
+export function FssWallpaperForm({ settings, onChange }) {
+  function onChangeColor (event) {
+    const color = event.hex;
+    onChange({ target:{
+      name: 'settings',
+      value: {...settings, color},
+    }});
+  }
+  function onChangeSpeed (event) {
+    const speed = event.target.value / 100000
+    onChange({ target:{
+      name: 'settings',
+      value: {...settings, speed},
+    }});
+  }
+  return (
+    <Cell col={12}>
+      <div>
+        Speed
+        <Slider min={0} max={1000}
+            onChange={onChangeSpeed}
+            value={(settings.speed || 0.0001) * 100000}
+        />
+      </div>
+      <div>
+        Color
+        <GithubPicker
+            color={settings.color}
+            onChangeComplete={onChangeColor}
+        />
+      </div>
+    </Cell>
+  );
+}
 
 
 
@@ -127,7 +174,7 @@ function createMesh (renderer) {
   return mesh;
 }
 
-function createLights(scene, renderer) {
+function createLights(scene, renderer, settings) {
   var l, light;
   for (l = scene.lights.length - 1; l >= 0; l--) {
     light = scene.lights[l];
@@ -135,7 +182,10 @@ function createLights(scene, renderer) {
   }
   renderer.clear();
   for (l = 0; l < LIGHT.count; l++) {
-    light = new FSS.Light(LIGHT.ambient, LIGHT.diffuse);
+    light = new FSS.Light(
+      settings.color   || LIGHT.ambient,
+      settings.diffuse || LIGHT.diffuse
+    );
     light.ambientHex = light.ambient.format();
     light.diffuseHex = light.diffuse.format();
     scene.add(light);
@@ -161,14 +211,13 @@ function createLights(scene, renderer) {
 }
 
 
-function getAnimation () {
+function getAnimation (rootElement, settings) {
   // 1) Create a Renderer for the context you would like to render to.
   //    You can use either the WebGLRenderer, CanvasRenderer or SVGRenderer.
   var renderer = new FSS.WebGLRenderer();
 
   // 2) Add the Renderer's element to the DOM:
-  var container = document.getElementsByClassName('fss-wallpaper')[0];
-  container.appendChild(renderer.element);
+  rootElement.appendChild(renderer.element);
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   var center = FSS.Vector3.create();
@@ -181,7 +230,7 @@ function getAnimation () {
   var geometry = mesh.geometry;
   scene.add(mesh);
 
-  createLights(scene, renderer)
+  createLights(scene, renderer, settings)
 
   function update() {
     var ox, oy, oz, l, light, v, vertex, offset = MESH.depth/2;

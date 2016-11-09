@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import { GithubPicker } from 'react-color';
+import { Cell } from 'react-mdl';
 
 export default function SolidWallpaper({ settings }) {
   return (
@@ -10,3 +12,19 @@ SolidWallpaper.propTypes = {
   settings: PropTypes.object.isRequired,
 };
 
+export function SolidWallpaperForm({ settings, onChange }) {
+  function onChangeColor (color) {
+    onChange({ target:{
+      name: 'settings',
+      value: {color:color.hex},
+    }});
+  }
+  return (
+    <Cell col={12}>
+      <GithubPicker
+          color={settings.color}
+          onChangeComplete={onChangeColor}
+      />
+    </Cell>
+  );
+}
