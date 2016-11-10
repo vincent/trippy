@@ -1,7 +1,7 @@
-import { status, json } from '../../shared/helpers/fetch';
+import { status, json } from '../../../shared/helpers/fetch';
 import steamAuth from 'electron-steam-openid';
 
-export default function requestSteamToken() {
+export default function requestToken() {
   var config = {
     redirectUri: 'http://localhost'
   };

@@ -1,4 +1,4 @@
-import { fetchCached, status, json, tap, transform } from '../../shared/helpers/fetch';
+import { fetchCached, status, json, tap, transform } from '../../../shared/helpers/fetch';
 import fetch from 'node-fetch';
 
 const normalizeGameData = transform(function(data) {
@@ -8,8 +8,7 @@ const normalizeGameData = transform(function(data) {
   }
 })
 
-export default function steamGameNews(appId) {
-  console.log('steamGameNews', appId);
+export default function gameNews(appId) {
   return fetchCached(`http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appId=${appId}&count=5&maxlength=300&format=json`, {
     method: 'GET'
   })

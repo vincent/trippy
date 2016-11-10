@@ -1,4 +1,4 @@
-import { fetchCached, status, json, transform } from '../../shared/helpers/fetch';
+import { fetchCached, status, json, transform } from '../../../shared/helpers/fetch';
 import fetch from 'node-fetch';
 
 const normalizeGameData = transform(function(payload) {
@@ -10,7 +10,7 @@ const normalizeGameData = transform(function(payload) {
   return payload;
 })
 
-export default function steamListOwnedGames(apiKey, steamId) {
+export default function listOwnedGames(apiKey, steamId) {
   return fetchCached(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${apiKey}&steamid=${steamId}&include_appinfo=1&format=json`, {
     method: 'GET'
   })
