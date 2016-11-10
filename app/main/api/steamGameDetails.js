@@ -6,7 +6,7 @@ const normalizeGameData = transform(function(data) {
 })
 
 export default function steamGameDetails(appId) {
-  return fetchCached(`hhttp://store.steampowered.com/api/appdetails?appids=${appId}`, {
+  return fetchCached(`http://store.steampowered.com/api/appdetails?appids=${appId}`, {
     method: 'GET'
   })
   .then(status)

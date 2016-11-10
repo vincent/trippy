@@ -2,6 +2,7 @@
 import {
   GAME_LIST_ZOOM_CHANGED,
   GAMES_FILTER_CHANGED,
+  UPDATE_GAME_ACHIEVEMENTS,
   UPDATE_GAME_DETAILS,
   UPDATE_OWNED_GAMES,
   UPDATE_GAME_NEWS,
@@ -55,7 +56,7 @@ export default function games(state = initialState, action) {
       };
     }
 
-    case UPDATE_GAME_DETAILS: {
+    case UPDATE_GAME_ACHIEVEMENTS: {
       if (error) return state;
       const ownedGames = state.ownedGames.map(function (game) {
         if (game.id === payload.gameId) {
@@ -72,7 +73,24 @@ export default function games(state = initialState, action) {
       };
     }
 
-    case UPDATE_GAME_NEWS:
+    case UPDATE_GAME_NEWS: {
+      if (error) return state;
+      const ownedGames = state.ownedGames.map(function (game) {
+        if (game.id === payload.gameId) {
+          return {
+            ...game,
+            details: payload.details
+          };
+        }
+        return game;
+      })
+      return {
+        ...state,
+        ownedGames
+      };
+    }
+
+    case UPDATE_GAME_NEWS: {
       if (error) return state;
       const ownedGames = state.ownedGames.map(function (game) {
         if (game.id === payload.gameId) {
@@ -87,6 +105,7 @@ export default function games(state = initialState, action) {
         ...state,
         ownedGames
       };
+    }
 
     default:
       return state;

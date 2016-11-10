@@ -2,6 +2,7 @@ import settings from '../store/settings';
 
 export const GAME_LIST_ZOOM_CHANGED = 'GAME_LIST_ZOOM_CHANGED';
 export const GAMES_FILTER_CHANGED = 'GAMES_FILTER_CHANGED';
+export const UPDATE_GAME_ACHIEVEMENTS = 'UPDATE_GAME_ACHIEVEMENTS';
 export const UPDATE_GAME_DETAILS = 'UPDATE_GAME_DETAILS';
 export const UPDATE_OWNED_GAMES = 'UPDATE_OWNED_GAMES';
 export const UPDATE_GAME_NEWS = 'UPDATE_GAME_NEWS';
@@ -67,6 +68,13 @@ export function setGameListZoom(zoom = 33.3333) {
   };
 }
 
+export const updateGameAchievements = function (game) {
+  return forwardActionToProvider(game.provider, {
+    type: UPDATE_GAME_ACHIEVEMENTS,
+    payload: game
+  });
+}
+
 export const updateGameDetails = function (game) {
   return forwardActionToProvider(game.provider, {
     type: UPDATE_GAME_DETAILS,
@@ -80,3 +88,4 @@ export const updateGameNews = function (game) {
     payload: game
   });
 }
+

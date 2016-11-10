@@ -8,11 +8,16 @@ import moment from 'moment';
 var GameView = React.createClass({
 
   componentWillMount: function() {
-    if (! this.props.game.achievements)
-      this.props.updateGameDetails(this.props.game);
+    const { game } = this.props;
 
-    if (! this.props.game.news)
-      this.props.updateGameNews(this.props.game);
+    if (! game.achievements)
+      this.props.updateGameAchievements(game);
+
+    if (! game.news)
+      this.props.updateGameNews(game);
+
+    if (! game.details)
+      this.props.updateGameDetails(game);
   },
 
   render: function() {
@@ -47,6 +52,7 @@ GameView.propTypes = {
   launchGame: PropTypes.func.isRequired,
   updateGameNews: PropTypes.func.isRequired,
   updateGameDetails: PropTypes.func.isRequired,
+  updateGameAchievements: PropTypes.func.isRequired,
 };
 
 export default GameView;
