@@ -38,7 +38,7 @@ function Settings({
             User data will be written in {settings.userSettingsPath}
           </Cell>
         </Grid>
-        <SettingsForm settings={settings} onSubmit={handleSubmit} initialValues={settings} />
+        {false && <SettingsForm settings={settings} onSubmit={handleSubmit} initialValues={settings} />}
         <WallpaperForm wallpaper={wallpaper} onSubmit={updateWallpaper} initialValues={wallpaper} />
       </Cell>
     </Grid>
