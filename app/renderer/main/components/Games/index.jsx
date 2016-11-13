@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import GameList from './GameList';
+import Header from '../Header';
 
 class Games extends Component {
   static propTypes = {
@@ -17,16 +18,14 @@ class Games extends Component {
 
   render() {
     return (
-      <Grid>
-        <Cell col={12}>
-          <GameList
-            games={this.props.games}
-            launchGame={this.props.launchGame}
-            gameListZoom={this.props.gameListZoom}
-            setGameListZoom={this.props.setGameListZoom}
-          />
-        </Cell>
-      </Grid>
+      <div>
+        <GameList
+          games={this.props.games}
+          launchGame={this.props.launchGame}
+          gameListZoom={this.props.gameListZoom}
+          setGameListZoom={this.props.setGameListZoom}
+        />
+      </div>
     );
   }
 }

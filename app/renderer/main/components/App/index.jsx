@@ -16,6 +16,8 @@ class App extends Component {
     job: PropTypes.object.isRequired,
     wallpaper: PropTypes.object.isRequired,
     initWallpaper: PropTypes.func.isRequired,
+    fetchBingImage: PropTypes.func.isRequired,
+    fetchApodImage: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
@@ -28,7 +30,10 @@ class App extends Component {
     return (
       <Layout fixedDrawer fixedHeader>
         <Header updateGamesFilter={this.props.updateGamesFilter}  />
-        <Wallpaper wallpaper={this.props.wallpaper} />
+        <Wallpaper wallpaper={this.props.wallpaper}
+                   fetchBingImage={this.props.fetchBingImage}
+                   fetchApodImage={this.props.fetchApodImage}
+        />
         <Drawer job={this.props.job} settings={this.props.settings} />
         <Content component="main">
           <AutoUpdater system={this.props.system} />

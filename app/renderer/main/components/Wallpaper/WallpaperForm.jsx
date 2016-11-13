@@ -2,8 +2,13 @@ import React, { PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Grid, Cell, RadioGroup, Radio } from 'react-mdl';
 import adapter, { TOGGLE, TIME, CHECKBOXES } from '../../../shared/forms/adapter';
-import { SolidWallpaperForm } from './SolidWallpaper';
-import { FssWallpaperForm } from './FssWallpaper';
+
+const forms = {
+  fss: require('./FssWallpaper').FssWallpaperForm,
+  bing: require('./BingWallpaper').BingWallpaperForm,
+  apod: require('./ApodWallpaper').ApodWallpaperForm,
+  solid: require('./SolidWallpaper').SolidWallpaperForm,
+};
 
 var WallpaperForm = React.createClass({
 
@@ -25,6 +30,15 @@ var WallpaperForm = React.createClass({
   },
 
   render: function () {
+    const radios = Object.keys(forms).map(function(name, index) {
+      const Form = forms[name];
+      const Name = name[0].toUpperCase() + name.slice(1);
+      return (
+        <Radio key={index} value={name} ripple>{Name}
+          {this.state.name == name && <Form settings={this.props.wallpaper.settings} onChange={this.handleChange} />}
+        </Radio>
+      );
+    }.bind(this));
     return (
       <form onChange={this.handleChange}>
         <Grid>
@@ -33,20 +47,7 @@ var WallpaperForm = React.createClass({
           </Cell>
           <Cell col={12}>
             <RadioGroup childContainer="div" name="name" value={this.state.name}>
-              <Radio value="solid" ripple>Solid
-                {this.state.name == 'solid'
-                  && <SolidWallpaperForm
-                        settings={this.props.wallpaper.settings}
-                        onChange={this.handleChange}
-                      />}
-              </Radio>
-              <Radio value="fss" ripple>FSS
-                {this.state.name == 'fss'
-                  && <FssWallpaperForm
-                        settings={this.props.wallpaper.settings}
-                        onChange={this.handleChange}
-                      />}
-              </Radio>
+              {radios}
             </RadioGroup>
           </Cell>
         </Grid>

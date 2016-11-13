@@ -11,7 +11,8 @@ import SettingsPage from './containers/SettingsPage';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={GameListPage} />
+    <IndexRoute component={HomePage} />
+    <Route path="/games" component={GameListPage} />
     <Route path="/jobs" component={JobsPage} />
     <Route path="/steam" component={SteamPage} />
     <Route path="/settings" component={SettingsPage} />

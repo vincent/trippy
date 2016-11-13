@@ -1,5 +1,12 @@
+import * as Bing from '../../main/api/bing';
+import * as Nasa from '../../main/api/nasa';
+
+import { createAliasedAction } from 'electron-redux';
+
 export const INIT_WALLPAPER = 'INIT_WALLPAPER';
 export const UPDATE_WALLPAPER = 'UPDATE_WALLPAPER';
+export const FETCH_IMAGE_FROM_BING = 'FETCH_IMAGE_FROM_BING';
+export const FETCH_IMAGE_FROM_NASA = 'FETCH_IMAGE_FROM_NASA';
 
 import settings from '../store/settings';
 
@@ -23,3 +30,31 @@ export function updateWallpaper(wallpaper) {
     },
   };
 }
+
+export const fetchBingImage = createAliasedAction(
+  `${FETCH_IMAGE_FROM_BING}_MAIN`,
+  () => ({
+    type: UPDATE_WALLPAPER,
+    payload: Bing.dailyImage().then((data) => {
+      debugger;
+      return {
+        name: 'bing',
+        settings: data
+      }
+    })
+  })
+)
+
+export const fetchApodImage = createAliasedAction(
+  `${FETCH_IMAGE_FROM_NASA}_MAIN`,
+  () => ({
+    type: UPDATE_WALLPAPER,
+    payload: Nasa.dailyImage().then((data) => {
+      debugger;
+      return {
+        name: 'apod',
+        settings: data
+      }
+    })
+  })
+)

@@ -31,8 +31,14 @@ var Drawer = React.createClass({
         <NavigableNavigation className={classnames('mdl-color--blue-grey-800', styles.navigation)}>
           <IndexLink to="/" className={styles.navigationLink} activeClassName={styles.active}>
             <Icon name="home" className={navigationLinkIconClassName} />
-            Games
+            Home
           </IndexLink>
+
+          <Link to="/games" className={styles.navigationLink} activeClassName={styles.active}>
+            <Icon name="games" className={navigationLinkIconClassName} />
+            Games
+          </Link>
+
           <Link to="/jobs" className={styles.navigationLink} activeClassName={styles.active}>
             {!!activeJobsCount &&
               <Badge text={activeJobsCount} overlap>

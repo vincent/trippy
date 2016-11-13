@@ -16,7 +16,7 @@ export default function wallpaper(state = initialState, action) {
       return {
         ...state,
         name: action.payload.name,
-        settings: action.payload.settings,
+        settings: action.payload.settings || {},
       }
 
     default:

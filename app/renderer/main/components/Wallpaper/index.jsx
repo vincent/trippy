@@ -2,6 +2,8 @@
 import React, { PropTypes } from 'react';
 import SolidWallpaper from './SolidWallpaper';
 import FssWallpaper from './FssWallpaper';
+import BingWallpaper from './BingWallpaper';
+import ApodWallpaper from './ApodWallpaper';
 
 var styles = {
   container: {
@@ -14,11 +16,13 @@ var styles = {
   }
 };
 
-export default function Wallpaper({ wallpaper }) {
+export default function Wallpaper({ wallpaper, fetchBingImage, fetchApodImage }) {
   return (
     <div className="background" style={styles.container}>
       {wallpaper.name == 'solid' && <SolidWallpaper settings={wallpaper.settings} />}
-      {wallpaper.name == 'fss' && <FssWallpaper settings={wallpaper.settings} />}
+      {wallpaper.name == 'fss'   && <FssWallpaper settings={wallpaper.settings} />}
+      {wallpaper.name == 'bing'  && <BingWallpaper settings={wallpaper.settings} fetchBingImage={fetchBingImage}/>}
+      {wallpaper.name == 'apod'  && <ApodWallpaper settings={wallpaper.settings} fetchApodImage={fetchApodImage}/>}
     </div>
   );
 }
