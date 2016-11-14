@@ -36,7 +36,6 @@ export const fetchBingImage = createAliasedAction(
   () => ({
     type: UPDATE_WALLPAPER,
     payload: Bing.dailyImage().then((data) => {
-      debugger;
       return {
         name: 'bing',
         settings: data
@@ -50,7 +49,6 @@ export const fetchApodImage = createAliasedAction(
   () => ({
     type: UPDATE_WALLPAPER,
     payload: Nasa.dailyImage().then((data) => {
-      debugger;
       return {
         name: 'apod',
         settings: data
