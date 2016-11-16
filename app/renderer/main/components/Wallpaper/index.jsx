@@ -1,5 +1,7 @@
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import './wallpaper.css';
 import SolidWallpaper from './SolidWallpaper';
 import FssWallpaper from './FssWallpaper';
 import BingWallpaper from './BingWallpaper';
@@ -16,17 +18,25 @@ var styles = {
   }
 };
 
-export default function Wallpaper({ wallpaper, fetchBingImage, fetchApodImage }) {
-  return (
-    <div className="background" style={styles.container}>
-      {wallpaper.name == 'solid' && <SolidWallpaper settings={wallpaper.settings} />}
-      {wallpaper.name == 'fss'   && <FssWallpaper settings={wallpaper.settings} />}
-      {wallpaper.name == 'bing'  && <BingWallpaper settings={wallpaper.settings} fetchBingImage={fetchBingImage}/>}
-      {wallpaper.name == 'apod'  && <ApodWallpaper settings={wallpaper.settings} fetchApodImage={fetchApodImage}/>}
-    </div>
-  );
+class Wallpaper extends Component {
+
+  render() {
+    const { wallpaper, fetchBingImage, fetchApodImage } = this.props;
+    return (
+      <div className="background" style={styles.container}>
+            {wallpaper.name == 'solid'  && <SolidWallpaper settings={wallpaper.settings} />}
+            {wallpaper.name == 'fss'    && <FssWallpaper settings={wallpaper.settings} />}
+            {wallpaper.name == 'bing'   && <BingWallpaper settings={wallpaper.settings} fetchBingImage={fetchBingImage}/>}
+            {wallpaper.name == 'apod'   && <ApodWallpaper settings={wallpaper.settings} fetchApodImage={fetchApodImage}/>}
+            {wallpaper.name == 'custom' && <ApodWallpaper settings={wallpaper.settings} />}
+      </div>
+    );
+  }
+
 }
 
 Wallpaper.propTypes = {
   wallpaper: PropTypes.object.isRequired,
 };
+
+export default Wallpaper;

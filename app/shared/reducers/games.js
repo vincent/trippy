@@ -73,7 +73,7 @@ export default function games(state = initialState, action) {
       };
     }
 
-    case UPDATE_GAME_NEWS: {
+    case UPDATE_GAME_DETAILS: {
       if (error) return state;
       const ownedGames = state.ownedGames.map(function (game) {
         if (game.id === payload.gameId) {

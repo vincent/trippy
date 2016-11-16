@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import { Cell, Card, CardTitle, CardText, CardMenu, CardActions, Button, IconButton } from 'react-mdl';
+import TransitionGroup from 'react-addons-css-transition-group';
 import moment from 'moment';
 
 function cardStyle (zoom) {
@@ -17,7 +18,7 @@ var GameCard = React.createClass({
     const { game, gameListZoom } = this.props;
     return (
       <Cell col={4} style={cardStyle(gameListZoom)}>
-        <Card shadow={0} style={{width: '500px', height: '350px', margin: 'auto'}}>
+        <Card shadow={0} style={{ width:'100%', margin: 'auto'}}>
           <Link to={`/game/${game.id}`}>
             <CardTitle expand style={{color: '#fff', height: '250px', background: `url(${cachedUrl(game.cover_small)}) center / cover`}}/>
           </Link>

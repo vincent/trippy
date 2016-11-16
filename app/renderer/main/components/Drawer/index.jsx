@@ -4,9 +4,9 @@ import { Link, IndexLink } from 'react-router';
 import classnames from 'classnames';
 import styles from './drawer.css';
 import FaIcon from '../FaIcon';
-import NavigableComponent from '../../../shared/NavigableComponent';
 
-const NavigableNavigation = NavigableComponent(Navigation, { clickOnNavigate:true });
+//import NavigableComponent from '../../../shared/NavigableComponent';
+// const NavigableNavigation = NavigableComponent(Navigation, { clickOnNavigate:true });
 
 var Drawer = React.createClass({
 
@@ -28,7 +28,7 @@ var Drawer = React.createClass({
 
     return (
       <MdlDrawer className={drawerClassName}>
-        <NavigableNavigation className={classnames('mdl-color--blue-grey-800', styles.navigation)}>
+        <Navigation className={classnames('mdl-color--blue-grey-800', styles.navigation)}>
           <IndexLink to="/" className={styles.navigationLink} activeClassName={styles.active}>
             <Icon name="home" className={navigationLinkIconClassName} />
             Home
@@ -62,7 +62,7 @@ var Drawer = React.createClass({
             <Icon name="settings" className={navigationLinkIconClassName} />
             Settings
           </Link>
-        </NavigableNavigation>
+        </Navigation>
       </MdlDrawer>
     );
   }

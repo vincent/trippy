@@ -31,6 +31,16 @@ export function updateWallpaper(wallpaper) {
   };
 }
 
+export function setTemporaryWallpaper(wallpaper) {
+  return {
+    type: UPDATE_WALLPAPER,
+    payload: wallpaper,
+    meta: {
+      scope: 'local',
+    },
+  };
+}
+
 export const fetchBingImage = createAliasedAction(
   `${FETCH_IMAGE_FROM_BING}_MAIN`,
   () => ({

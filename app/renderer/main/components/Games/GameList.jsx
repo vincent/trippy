@@ -39,7 +39,7 @@ var GameList = React.createClass({
     return (
       <Grid>
         <Cell col={12}>
-          <Slider min={10} max={50} value={self.state.zoom} onChange={this.handleZoomChange}/>
+          <Slider min={12} max={50} value={self.state.zoom} onChange={this.handleZoomChange}/>
         </Cell>
         {cards}
       </Grid>

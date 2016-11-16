@@ -5,8 +5,10 @@ import { ListItem, ListItemContent, List } from 'react-mdl';
 import moment from 'moment';
 
 const styles = {
+  text: {
+    color: 'whitesmoke'
+  },
   item: {
-    background: '#eee',
     marginBottom: '10px',
   }
 }
@@ -16,9 +18,10 @@ function GameNewsList({
 }) {
   const items = news.map(function(news, index) {
     const date = moment(news.date, 'X').format('LL');
+    const text = (<div style={styles.text} dangerouslySetInnerHTML={{__html: `${date}: ${news.contents}`}} />);
     return (
       <ListItem threeLine key={index} style={styles.item}>
-        <ListItemContent avatar="person" subtitle={`${date}: ${news.contents}`}>
+        <ListItemContent avatar="person" subtitle={text}>
           <a href={news.url}>{news.title}</a>
         </ListItemContent>
       </ListItem>

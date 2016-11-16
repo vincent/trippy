@@ -3,11 +3,13 @@ import { Grid, Cell, Card, CardTitle, CardText, CardMenu, CardActions, Button, I
 import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import AchievementList from './AchievementList';
 import GameNewsList from './GameNewsList';
+import GameMoviesCarousel from './GameMoviesCarousel';
 import moment from 'moment';
+import './gameCard.css';
 
 var GameView = React.createClass({
 
-  componentWillMount: function() {
+  componentDidMount: function() {
     const { game } = this.props;
 
     if (! game.achievements)
@@ -18,6 +20,22 @@ var GameView = React.createClass({
 
     if (! game.details)
       this.props.updateGameDetails(game);
+  },
+
+  componentDidUpdate: function (prevProps, prevState) {
+    const { game } = this.props;
+
+    if (game.details && game.details.background)
+      this.props.setTemporaryWallpaper({
+        name: 'custom',
+        settings: {
+          url: cachedUrl(game.details.background)
+        }
+      });
+  },
+
+  componentWillUnmount: function () {
+    this.props.initWallpaper();
   },
 
   render: function() {
@@ -36,14 +54,16 @@ var GameView = React.createClass({
               <Button ripple onClick={() => this.props.launchGame(game)}>Play</Button>
             </CardActions>
           </Card>
-          <AchievementList achievements={game.achievements || []}/>
+          {game.achievements && <AchievementList achievements={game.achievements}/>}
         </Cell>
         <Cell col={6}>
-          <GameNewsList news={game.news || []}/>
+          {game.news && <GameNewsList news={game.news}/>}
         </Cell>
       </Grid>
     );
   }
+
+      // {game.details && game.details.movies && <GameMoviesCarousel movies={game.details.movies}/>}
 
 });
 
