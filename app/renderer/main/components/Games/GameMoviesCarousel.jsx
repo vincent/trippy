@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import Slider from 'react-slick';
 import Video from 'react-html5video';
-import 'react-html5video/dist/ReactHtml5Video.css';
 
 const styles = {
 }

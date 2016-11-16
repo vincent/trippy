@@ -2,6 +2,7 @@
 @import '~react-select/dist/react-select.css';
 @import '~react-virtualized/styles.css';
 @import '~react-virtualized-select/styles.css';
+@import '~react-html5video/dist/ReactHtml5Video.css';
 @import './fonts/roboto.global.css';
 @import './fonts/material-icons.global.css';
 @import './fonts/font-awesome.global.css';
