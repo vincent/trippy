@@ -20,9 +20,15 @@ var GameView = React.createClass({
 
     if (! game.details)
       this.props.updateGameDetails(game);
+
+    this.useGameWallpaper();
   },
 
   componentDidUpdate: function (prevProps, prevState) {
+    this.useGameWallpaper();
+  },
+
+  useGameWallpaper: function (prevProps, prevState) {
     const { game } = this.props;
 
     if (game.details && game.details.background)
