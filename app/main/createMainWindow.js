@@ -1,12 +1,21 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
 import path from 'path';
 
-const mainHtml = path.join(__dirname, '../renderer/assets/html/main.html');
+const design = process.env.DESIGN || 'main';
+const mainHtml = path.join(__dirname, `../renderer/assets/html/${design}.html`);
 
 let browserWindow = null;
 
 function showWindow() {
-  browserWindow.maximize();
+  switch (design) {
+    case 'minimal':
+      browserWindow.setSize(1024, 728, true)
+      break;
+
+    default:
+      browserWindow.maximize();
+      break;
+  }
   browserWindow.show();
   browserWindow.focus();
 }
@@ -26,6 +35,7 @@ export default function createWindow({ uri = '/' } = {}) {
     show: false,
     width: 1024,
     height: 728,
+    frame: (design !== 'minimal')
   });
 
   function handleRedirect(e, url) {
@@ -51,7 +61,10 @@ export default function createWindow({ uri = '/' } = {}) {
     browserWindow.openDevTools();
   }
 
-  if (process.platform === 'darwin') {
+  if (design === 'minimal') {
+    // No menu
+
+  } else if (process.platform === 'darwin') {
     template = [{
       label: 'Electron',
       submenu: [{

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Timesheets</title>
+    <script>
+      (function() {
+        if (!process.env.HOT) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = '../../minimal/style.css';
+          document.write(link.outerHTML);
+        }
+      }());
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+  </head>
+  <body style="-webkit-app-region: drag">
+    <div id="root"></div>
+    <script src="../js/fss.js"></script>
+    <script>
+      (function() {
+        const script = document.createElement('script');
+        script.src = (process.env.HOT) ? 'http://localhost:3000/dist/minimal/index.js' : '../../minimal/index.js';
+        document.write(script.outerHTML);
+      }());
+    </script>
+  </body>
+</html>

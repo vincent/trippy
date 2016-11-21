@@ -25,6 +25,11 @@ async function start() {
     if (process.platform !== 'darwin') app.quit();
   });
 
+  store.subscribe(async () => {
+    // TODO: should this be blocking / wait? _.throttle?
+    await storage.set('state', store.getState());
+  });
+
   app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

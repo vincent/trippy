@@ -16,6 +16,11 @@ const config = {
       'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
       './app/renderer/main/index',
     ],
+    minimal: [
+      'babel-polyfill',
+      'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+      './app/renderer/minimal/index',
+    ],
     menubar: [
       'babel-polyfill',
       'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',

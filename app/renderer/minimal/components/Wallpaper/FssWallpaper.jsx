@@ -52,7 +52,7 @@ var FssWallpaper = React.createClass({
   animate: function () {
     const settings = this.props.settings;
     now = Date.now() - start;
-    if (settings.color) this.animation.scene.lights.forEach(function (light) {
+    this.animation.scene.lights.forEach(function (light) {
       light.ambient.set(settings.color, 1);
     });
     MESH.speed = settings.speed === undefined ? 0.0008 : settings.speed;

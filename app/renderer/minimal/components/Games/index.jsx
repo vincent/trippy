@@ -5,6 +5,7 @@ import Header from '../Header';
 
 class Games extends Component {
   static propTypes = {
+    updateGameAchievements: PropTypes.func.isRequired,
     updateOwnedGames: PropTypes.func.isRequired,
     setGameListZoom: PropTypes.func.isRequired,
     games: PropTypes.arrayOf(PropTypes.object),
@@ -13,8 +14,7 @@ class Games extends Component {
   }
 
   componentDidMount() {
-    if (! this.props.games.length)
-      this.props.updateOwnedGames();
+    this.props.updateOwnedGames();
   }
 
   render() {
@@ -25,6 +25,7 @@ class Games extends Component {
           launchGame={this.props.launchGame}
           gameListZoom={this.props.gameListZoom}
           setGameListZoom={this.props.setGameListZoom}
+          updateGameAchievements={this.props.updateGameAchievements}
         />
       </div>
     );
