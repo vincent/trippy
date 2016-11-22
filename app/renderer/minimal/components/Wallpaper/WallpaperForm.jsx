@@ -10,6 +10,10 @@ const forms = {
   solid: require('./SolidWallpaper').SolidWallpaperForm,
 };
 
+const style = {
+  WebkitAppRegion:'no-drag'
+};
+
 var WallpaperForm = React.createClass({
 
   getInitialState: function() {
@@ -40,7 +44,7 @@ var WallpaperForm = React.createClass({
       );
     }.bind(this));
     return (
-      <form onChange={this.handleChange}>
+      <form onChange={this.handleChange} style={style}>
         <Grid>
           <Cell col={12}>
             <span>Wallpaper preferences:</span>

@@ -81,3 +81,17 @@ nav.mdl-navigation {
   opacity: 1;
   transition: opacity .5s ease-in;
 }
+
+
+.mdl-data-table tbody tr.game-row {
+  background-position: -609px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: opacity .2s ease-in;
+  -moz-transition: opacity .2s ease-in;
+  -o-transition: opacity .2s ease-in;
+  transition: opacity .2s ease-in;
+}
+.mdl-data-table tbody tr.game-row:hover {
+  background-position: left !important;
+}

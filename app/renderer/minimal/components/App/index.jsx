@@ -28,9 +28,15 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      height:'95%',
+      overflow: 'hidden',
+      padding:'20px',
+      width:'calc(100% - 40px)',
+    };
     return (
-      <div>
-        <Content style={{ padding:'20px', width:'calc(100% - 40px)' }} component="main">
+      <Sidebar>
+        <Content style={style} component="main">
           <AutoUpdater system={this.props.system} />
           <Wallpaper wallpaper={this.props.wallpaper}
                      fetchBingImage={this.props.fetchBingImage}
@@ -47,7 +53,7 @@ class App extends Component {
             return null;
           })()
         }
-      </div>
+      </Sidebar>
     );
   }
 }

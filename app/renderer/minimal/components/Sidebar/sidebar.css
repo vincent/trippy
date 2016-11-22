@@ -1,0 +1,56 @@
+.drawer {
+  background-color: rgba(38, 50, 56, 0.28) !important;
+  border: none;
+}
+
+/* iOS Safari specific workaround */
+.drawer :global .mdl-menu__container {
+  z-index: 100;
+}
+.navigation {
+  z-index: 50;
+}
+/* END iOS Safari specific workaround */
+
+.drawer :global .mdl-menu .mdl-menu__item {
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.navigation {
+}
+
+.drawer .navigation {
+  z-index: 50;
+  display: block;
+  height: 100%;
+  width: 150px;
+  padding-top: 200px;
+}
+
+.drawer .navigation .navigationLink {
+  -webkit-align-items: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 500;
+  display: block;
+  padding: 20px;
+}
+.drawer .navigation .navigationLink i {
+  width: 30px;
+}
+.drawer .navigation .navigationLink:hover {
+  background-color: #00BCD4;
+  color: #37474F;
+}
+
+.drawer .navigation .navigationLink.active {
+  background-color: #00BCD4;
+  color: #37474F;
+}
+
+.navigation .navigationLink .navigationLinkIcon {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.56);
+  margin-right: 32px;
+}

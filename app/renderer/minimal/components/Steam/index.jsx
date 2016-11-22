@@ -4,6 +4,10 @@ import { Grid, Cell, Button } from 'react-mdl';
 import SteamAuth from './SteamAuth';
 import SteamApiKey from './SteamApiKey';
 
+const style = {
+  WebkitAppRegion:'no-drag'
+};
+
 // TODO: link to unlink account (remove token via API + delete from state)
 function Steam({
   cancelSteamAccount,
@@ -12,7 +16,7 @@ function Steam({
   steam,
 }) {
   return (
-    <Grid>
+    <Grid style={style}>
       <Cell col={12}>
         <h1>Steam</h1>
 

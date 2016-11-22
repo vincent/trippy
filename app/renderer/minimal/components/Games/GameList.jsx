@@ -1,4 +1,5 @@
 import React, { PropTypes, Component, Children } from 'react';
+import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import { Link } from 'react-router';
 import { Table, TableHeader } from 'react-mdl';
 import GameLine from './GameLine';
@@ -53,7 +54,6 @@ class GameList extends Component {
     const { games, launchGame } = this.props;
     return (
       <div style={styles.container}>
-        <BackArrow/>
         <Table
           sortable
           shadow={0}
@@ -62,6 +62,10 @@ class GameList extends Component {
             name: game.name,
             achievements: achieved(game),
             played: game.playtime_forever,
+            mdlRowProps: {
+              className: 'game-row',
+              style: { backgroundImage: `url(${cachedUrl(game.cover_small)})` }
+            }
           }})}>
           <TableHeader name="name" tooltip="Game title">Name</TableHeader>
           <TableHeader numeric name="played" tooltip="Hours played" cellFormatter={(playtime) => moment.duration(playtime, 'minutes').humanize()}>Played</TableHeader>
