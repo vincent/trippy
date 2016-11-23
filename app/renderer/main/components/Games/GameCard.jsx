@@ -16,6 +16,7 @@ function cardStyle (zoom) {
 var GameCard = React.createClass({
 
   render: function () {
+    const self = this;
     const { game, gameListZoom } = this.props;
     return (
       <Cell col={4} style={cardStyle(gameListZoom)}>

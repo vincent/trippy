@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import GameList from './GameList';
-import Header from '../Header';
 import GameSearchInput from '../GameSearchInput';
 
 class Games extends Component {

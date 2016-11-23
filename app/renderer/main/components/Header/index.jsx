@@ -2,21 +2,9 @@ import React, { PropTypes } from 'react';
 import { Header as MdlHeader, HeaderRow, Textfield } from 'react-mdl';
 import classnames from 'classnames';
 import styles from './header.css';
+import GameSearchInput from '../GameSearchInput';
 
 var Header = React.createClass({
-
-  getInitialState: function() {
-    return {
-      textFieldValue: ''
-    };
-  },
-
-  _handleTextFieldChange: function(e) {
-    this.setState({
-      textFieldValue: e.target.value
-    });
-    this.props.updateGamesFilter(e.target.value);
-  },
 
   render: function() {
     const headerClassNames = classnames(
@@ -26,12 +14,7 @@ var Header = React.createClass({
     );
     return (
       <MdlHeader className={headerClassNames}>
-        <Textfield
-          onChange={this._handleTextFieldChange}
-          floatingLabel={true}
-          label="Search"
-          value={this.state.textFieldValue}
-        />
+        <GameSearchInput updateGamesFilter={this.props.updateGamesFilter}/>
       </MdlHeader>
     );
   }

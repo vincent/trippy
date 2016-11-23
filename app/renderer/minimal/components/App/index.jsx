@@ -1,8 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Layout, Content } from 'react-mdl';
 import AutoUpdater from '../AutoUpdater';
-import Header from '../Header';
-import Drawer from '../Drawer';
 import Wallpaper from '../Wallpaper';
 import Sidebar from '../Sidebar';
 

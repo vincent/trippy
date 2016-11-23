@@ -3,7 +3,6 @@ import cachedUrl from '../../../../shared/helpers/cachedUrl';
 import { Link } from 'react-router';
 import { Table, TableHeader } from 'react-mdl';
 import GameLine from './GameLine';
-import BackArrow from '../BackArrow';
 import moment from 'moment';
 
 function achieved (game) {
