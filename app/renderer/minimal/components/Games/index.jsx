@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import GameList from './GameList';
 import Header from '../Header';
+import GameSearchInput from '../GameSearchInput';
 
 class Games extends Component {
   static propTypes = {
@@ -18,8 +19,12 @@ class Games extends Component {
   }
 
   render() {
+    const style = {
+      WebkitAppRegion:'no-drag'
+    };
     return (
       <div>
+        <GameSearchInput style={style} updateGamesFilter={this.props.updateGamesFilter}/>
         <GameList
           games={this.props.games}
           launchGame={this.props.launchGame}

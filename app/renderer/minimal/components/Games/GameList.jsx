@@ -14,7 +14,6 @@ function achieved (game) {
 const styles = {
   container: {
     height: '656px',
-    marginTop: '26px',
     overflowY: 'scroll',
     WebkitAppRegion: 'no-drag',
   },
@@ -22,7 +21,6 @@ const styles = {
     background: 'none',
     border: 'none',
     boxShadow: 'none',
-    marginTop: '30px',
     overflow: 'hidden',
     width: '100%',
   }
@@ -64,6 +62,7 @@ class GameList extends Component {
             played: game.playtime_forever,
             mdlRowProps: {
               className: 'game-row',
+              onDoubleClick: function () { self.props.launchGame(game); },
               style: { backgroundImage: `url(${cachedUrl(game.cover_small)})` }
             }
           }})}>

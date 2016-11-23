@@ -18,7 +18,7 @@ const navigationLinkIconClassName = classnames(
 
 var Sidebar = React.createClass({
   getInitialState: function() {
-    return {sidebarOpen: true};
+    return {sidebarOpen: false};
   },
 
   onSetSidebarOpen: function(open) {
@@ -28,7 +28,6 @@ var Sidebar = React.createClass({
   render: function() {
     const sidebarContent = (
       <Navigation className={classnames('mdl-color--blue-grey-800', menuStyles.navigation)}
-          onClick={() => this.onSetSidebarOpen(!this.state.sidebarOpen)}
           onMouseEnter={() => this.onSetSidebarOpen(true)}
           onMouseLeave={() => this.onSetSidebarOpen(false)}>
 
